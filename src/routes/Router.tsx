@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import {useKeycloak} from "@react-keycloak/web";
-import ProtectedRoute from "routes/ProtectedRoute";
 
 // pages
 import Main from 'pages/Main';
