@@ -1,7 +1,6 @@
-import React from "react";
 import {styled} from '@mui/material/styles';
 
-const LoadingBalls = styled('div')(({theme}) => ({
+export const LoadingBalls = styled('div')(() => ({
   left: '50%',
   top: '50%',
   width: '18px',
@@ -52,11 +51,4 @@ const LoadingBalls = styled('div')(({theme}) => ({
     '100%': {opacity: '0.25',},
   },
 }));
-
-
-export default function Loading() {
-  return (
-      <LoadingBalls/>
-  )
-}
 

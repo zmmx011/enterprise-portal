@@ -19,6 +19,7 @@ import {Avatar, Button, Divider, ListItemIcon} from "@mui/material";
 import {Logout, Settings} from "@mui/icons-material";
 import logo from "../assets/images/logo_invenia.png";
 import avatar from "../assets/images/avatar.jpg";
+import {useKeycloak} from "@react-keycloak/web";
 
 const Search = styled('div')(({theme}) => ({
   position: 'relative',
@@ -62,6 +63,13 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 const pages = ['Hello Groupware', 'K System', 'Help Desk', 'Together Lounge'];
 
 export default function DefaultAppBar() {
+  const { keycloak } = useKeycloak();
+
+  const logout = () => {
+    handleMenuClose();
+    keycloak.logout({ redirectUri: process.env.BASE_URL });
+  }
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -132,7 +140,7 @@ export default function DefaultAppBar() {
           anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
       >
         <MenuItem onClick={handleMenuClose}>
-          <Avatar alt="Henry Cavill" src={avatar} /> My account
+          <Avatar alt="Henry Cavill" src={avatar} /> {keycloak.idTokenParsed?.preferred_username}
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleMenuClose}>
@@ -141,7 +149,7 @@ export default function DefaultAppBar() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleMenuClose}>
+        <MenuItem onClick={logout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
