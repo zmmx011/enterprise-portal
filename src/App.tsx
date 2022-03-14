@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {ReactKeycloakProvider} from '@react-keycloak/web'
+import React from "react";
+import keycloak from "keycloak";
+import Router from "routes/Router";
+import Loading from "components/LoadingBalls"
 
 function App() {
+  const handleOnKeycloakEvent = async (event: unknown, error: unknown) => {
+    console.log('event:', event);
+    console.log('error:', error);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <ReactKeycloakProvider
+          authClient={keycloak}
+          onEvent={(event, error) => handleOnKeycloakEvent(event, error)}
+          LoadingComponent={<Loading/>}
+          initOptions={{
+            onLoad: "login-required",
+          }}
+      >
+        <Router/>
+      </ReactKeycloakProvider>
+  )
 }
 
 export default App;
