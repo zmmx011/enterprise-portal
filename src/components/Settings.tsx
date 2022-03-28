@@ -8,7 +8,6 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { ColorModeContext } from "../utils/ColorModeContext";
 
@@ -24,7 +23,7 @@ interface groupButtonProps {
 }
 
 export default function SettingDrawer({ drawerOpen, setDrawerOpen }: SettingDrawerProps) {
-  const {toggleColorMode, mode} = React.useContext(ColorModeContext);
+  const { toggleColorMode, mode } = React.useContext(ColorModeContext);
   const { t } = useTranslation();
 
   const [lang, setLanguage] = React.useState<string | null>("ko");

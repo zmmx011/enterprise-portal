@@ -14,7 +14,6 @@ export default function ProtectedRoute({ outlet }: ProtectedRouteProps) {
   }, [keycloak]);
 
   if (!keycloak.authenticated) {
-    console.log("로그인 여부 : " + keycloak.authenticated);
     login();
   }
 

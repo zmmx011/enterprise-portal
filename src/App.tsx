@@ -3,14 +3,10 @@ import React from "react";
 import keycloak from "keycloak";
 import Router from "routes/Router";
 import { LoadingBalls } from "components/LoadingBalls";
-import { ThemeProvider } from "@mui/material/styles";
-import lightTheme from "./utils/lightTheme";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ColorModeContext, ColorModeContextProvider } from "./utils/ColorModeContext";
+import { ColorModeContextProvider } from "./utils/ColorModeContext";
 
 function App() {
-  const colorMode = React.useContext(ColorModeContext);
-
   const eventLogger = (event: unknown, error: unknown) => {
     console.log("onKeycloakEvent", event, error);
   };
