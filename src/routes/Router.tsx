@@ -1,23 +1,23 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
-import {useKeycloak} from "@react-keycloak/web";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useKeycloak } from "@react-keycloak/web";
 
 // pages
-import Main from 'pages/Main';
+import Main from "pages/Main";
 
 export const RouterConfig = () => {
-  const { initialized } = useKeycloak()
+  const { initialized } = useKeycloak();
 
   if (!initialized) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Main/>}/>
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
