@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { ColorModeContext } from "../utils/ColorModeContext";
+import { ColorModeContext } from "../theme/ColorModeContext";
 
 type SettingDrawerProps = {
   drawerOpen: boolean,
@@ -24,12 +24,13 @@ interface groupButtonProps {
 
 export default function SettingDrawer({ drawerOpen, setDrawerOpen }: SettingDrawerProps) {
   const { toggleColorMode, mode } = React.useContext(ColorModeContext);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [lang, setLanguage] = React.useState<string | null>("ko");
 
   const handleLanguage = (event: React.MouseEvent<HTMLElement>, value: string) => {
     setLanguage(value);
+    i18n.changeLanguage(value);
   };
 
   const toggleDrawer = (open: boolean) => () => {

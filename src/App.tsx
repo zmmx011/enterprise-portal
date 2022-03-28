@@ -4,7 +4,7 @@ import keycloak from "keycloak";
 import Router from "routes/Router";
 import { LoadingBalls } from "components/LoadingBalls";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ColorModeContextProvider } from "./utils/ColorModeContext";
+import { ColorModeContextProvider } from "./theme/ColorModeContext";
 
 function App() {
   const eventLogger = (event: unknown, error: unknown) => {

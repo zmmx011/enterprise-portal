@@ -1,11 +1,19 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import ko from './ko.json';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import ko from "./ko.json";
+import en from "./en.json";
+import ch from "./ch.json";
 
 const resource = {
   ko: {
-    translation: ko,
+    translation: ko
   },
+  en: {
+    translation: en
+  },
+  ch: {
+    translation: ch
+  }
 };
 
 i18n
