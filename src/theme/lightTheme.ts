@@ -5,27 +5,15 @@ const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#31302e"
+      main: "#31302e",
     },
     secondary: {
       main: "#f58220",
-      contrastText: "#ffffff"
-    }
+      contrastText: "#ffffff",
+    },
   },
   typography: {
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      'Noto Sans KR',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
+    fontFamily: ["-apple-system", "BlinkMacSystemFont", "Roboto", "Nanum Gothic", "Arial", "sans-serif"].join("),
   },
 });
 
