@@ -77,7 +77,7 @@ export default function Main() {
                     fontSize: 20,
                     lineHeight: 0.7,
                     fontWeight: "bold",
-                    mt: "6px,
+                    mt: "6px",
                   }}
                 >
                   홍길동 선임
@@ -90,7 +90,7 @@ export default function Main() {
                     color: "#333333",
                     fontSize: 14,
                     lineHeight: 1,
-                    mt: "6px"
+                    mt: "6px",
                   }}
                 >
                   IT 개발파트
