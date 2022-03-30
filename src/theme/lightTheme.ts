@@ -13,7 +13,7 @@ const lightTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: ["-apple-system", "BlinkMacSystemFont", "Roboto", "Nanum Gothic", "Arial", "sans-serif"].join("),
+    fontFamily: ["-apple-system", "BlinkMacSystemFont", "Roboto", "Nanum Gothic", "Arial", "sans-serif"].join(","),
   },
 });
 
