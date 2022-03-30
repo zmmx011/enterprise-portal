@@ -62,7 +62,7 @@ export default function Main() {
                 width: 280,
                 height: 260,
                 borderRadius: "4px",
-                backgroundColor: "#ffffff,
+                backgroundColor: "#ffffff",
               }}
               color="primary"
             >
@@ -90,7 +90,7 @@ export default function Main() {
                     color: "#333333",
                     fontSize: 14,
                     lineHeight: 1,
-                    mt: "6px,
+                    mt: "6px"
                   }}
                 >
                   IT 개발파트
