@@ -46,15 +46,10 @@ export default function Main() {
         container
         sx={{
           minHeight: "100vh",
-          bgcolor: "primary.l",
+          bgcolor: "primary.light",
         }}
       >
-        <Container
-          maxWidth="lg"
-          sx={{
-            bgcolor: "primary.light",
-          }}
-        >
+        <Container maxWidth="lg">
           <Box sx={{ my: 4 }} component="div">
             <Card
               sx={{
