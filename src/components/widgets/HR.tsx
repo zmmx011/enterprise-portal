@@ -1,5 +1,5 @@
 import * as React from "react";
-import { WidgetCard } from "./WidgetCard";
+import { WidgetGrid } from "./WidgetGrid";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
@@ -110,7 +110,7 @@ export default function HR() {
   const popOpen = Boolean(anchorEl);
 
   return (
-    <WidgetCard size={1}>
+    <WidgetGrid size={1}>
       <Box sx={{ borderBottom: 1, borderColor: "divider", mb: "10px" }}>
         <Tabs value={value} onChange={handleChange} aria-label="hr" sx={{ height: tabHeight, minHeight: tabHeight }}>
           <StyledTab label="근태 현황" {...a11yProps(0)} />
@@ -217,6 +217,6 @@ export default function HR() {
       <TabPanel value={value} index={1}>
         팀 휴가현황
       </TabPanel>
-    </WidgetCard>
+    </WidgetGrid>
   );
 }

@@ -24,32 +24,26 @@ export default function Main() {
         <Grid container>
           <Grid item xs={3}>
             <Grid container direction="column">
-              <Grid item>
-                <Profile />
-              </Grid>
-              <Grid item>
-                <Schedule />
-              </Grid>
+              <Profile />
+              <Schedule />
             </Grid>
           </Grid>
           <Grid item xs={6}>
             <Grid container direction="column">
+              <Notice />
               <Grid item>
-                <Notice />
-              </Grid>
-              <Grid item>
-                <Grid container direction="row">
+                <Grid container>
                   <Grid item xs={6}>
-                    <Helpdesk />
+                    <Grid container direction="column">
+                      <Helpdesk />
+                      <HR />
+                    </Grid>
                   </Grid>
                   <Grid item xs={6}>
-                    <ErpNavi />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <HR />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <TogetherLounge />
+                    <Grid container direction="column">
+                      <ErpNavi />
+                      <TogetherLounge />
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>
@@ -57,15 +51,9 @@ export default function Main() {
           </Grid>
           <Grid item xs={3}>
             <Grid container direction="column">
-              <Grid item>
-                <Notification />
-              </Grid>
-              <Grid item>
-                <Search />
-              </Grid>
-              <Grid item>
-                <Banner />
-              </Grid>
+              <Notification />
+              <Search />
+              <Banner />
             </Grid>
           </Grid>
         </Grid>

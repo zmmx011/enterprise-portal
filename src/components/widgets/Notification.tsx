@@ -1,6 +1,6 @@
 import * as React from "react";
-import { WidgetCard } from "./WidgetCard";
+import { WidgetGrid } from "./WidgetGrid";
 
 export default function Notification() {
-  return <WidgetCard size={1}>Notification</WidgetCard>;
+  return <WidgetGrid size={1}>Notification</WidgetGrid>;
 }

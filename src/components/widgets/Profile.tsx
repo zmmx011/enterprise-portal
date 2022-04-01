@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import { Avatar, Typography } from "@mui/material";
 import * as React from "react";
 import avatar from "../../assets/images/avatar.jpg";
-import { WidgetCard } from "./WidgetCard";
+import { WidgetGrid } from "./WidgetGrid";
 
 export default function Profile() {
   const info = (text: string, value: number) => (
@@ -36,7 +36,7 @@ export default function Profile() {
   );
 
   return (
-    <WidgetCard size={1}>
+    <WidgetGrid size={1}>
       <Box sx={{ p: 0, display: "flex", flexDirection: "column", alignItems: "center", mb: "20px" }}>
         <Avatar alt="Henry Cavill" src={avatar} sx={{ width: 87, height: 87, my: "6px" }} />
         <Typography
@@ -73,6 +73,6 @@ export default function Profile() {
         {info("결재 완료", 1)}
         {info("결재 수신", 7)}
       </Box>
-    </WidgetCard>
+    </WidgetGrid>
   );
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { WidgetCard } from "./WidgetCard";
+import { WidgetGrid } from "./WidgetGrid";
 
 export default function Banner() {
-  return <WidgetCard size={1}>Banner</WidgetCard>;
+  return <WidgetGrid size={1}>Banner</WidgetGrid>;
 }

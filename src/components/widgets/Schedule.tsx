@@ -1,6 +1,6 @@
 import * as React from "react";
-import { WidgetCard } from "./WidgetCard";
+import { WidgetGrid } from "./WidgetGrid";
 
 export default function Schedule() {
-  return <WidgetCard size={1}>Schedule</WidgetCard>;
+  return <WidgetGrid size={1}>Schedule</WidgetGrid>;
 }
