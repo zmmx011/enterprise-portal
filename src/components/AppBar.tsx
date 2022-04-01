@@ -28,14 +28,14 @@ const Search = styled("div")(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25)
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(1),
-    width: "auto"
-  }
+    width: "auto",
+  },
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -45,7 +45,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   pointerEvents: "none",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center"
+  justifyContent: "center",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -57,9 +57,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "30ch"
-    }
-  }
+      width: "30ch",
+    },
+  },
 }));
 
 const pages = ["Hello Groupware", "K System", "Help Desk", "Together Lounge"];
@@ -130,10 +130,10 @@ export default function DefaultAppBar() {
             width: 32,
             height: 32,
             ml: -0.5,
-            mr: 1
+            mr: 1,
           },
           "&:before": {
-            content: "\"\"",
+            content: '""',
             display: "block",
             position: "absolute",
             top: 0,
@@ -142,9 +142,9 @@ export default function DefaultAppBar() {
             height: 10,
             bgcolor: "background.paper",
             transform: "translateY(-50%) rotate(45deg)",
-            zIndex: 0
-          }
-        }
+            zIndex: 0,
+          },
+        },
       }}
       transformOrigin={{ horizontal: "right", vertical: "top" }}
       anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
@@ -174,13 +174,13 @@ export default function DefaultAppBar() {
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: "top",
-        horizontal: "right"
+        horizontal: "right",
       }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{
         vertical: "top",
-        horizontal: "right"
+        horizontal: "right",
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
@@ -194,11 +194,7 @@ export default function DefaultAppBar() {
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
+        <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
@@ -221,27 +217,23 @@ export default function DefaultAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }} component="div">
+    <Box>
       <AppBar position="static">
         <Toolbar>
           {/* Logo */}
-          <Box sx={{ mr: 2, display: { xs: "none", md: "flex" } }} component="div">
+          <Box sx={{ mr: 2, display: { xs: "none", md: "flex" } }}>
             <img src={logo} alt="logo" />
           </Box>
           {/* Desktop Nav */}
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} component="div">
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
+              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
                 {page}
               </Button>
             ))}
           </Box>
           {/* Mobile */}
-          <Box sx={{ display: { xs: "flex", md: "none" } }} component="div">
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
             {/* Mobile Menu Button */}
             <IconButton
               size="large"
@@ -259,28 +251,28 @@ export default function DefaultAppBar() {
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "bottom",
-                horizontal: "left"
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
                 vertical: "top",
-                horizontal: "left"
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" }
+                display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" component="div">{page}</Typography>
+                  <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           {/* Mobile Logo */}
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} component="div">
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <img src={logo} alt="logo" />
           </Box>
           {/* Search */}
@@ -288,13 +280,10 @@ export default function DefaultAppBar() {
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
+            <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
           </Search>
           {/* Desktop Button */}
-          <Box sx={{ display: { xs: "none", md: "flex" } }} component="div">
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {/* Mail */}
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
@@ -302,11 +291,7 @@ export default function DefaultAppBar() {
               </Badge>
             </IconButton>
             {/* Notification */}
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
+            <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
               </Badge>
@@ -324,7 +309,7 @@ export default function DefaultAppBar() {
             </IconButton>
           </Box>
           {/* Mobile Button */}
-          <Box sx={{ display: { xs: "flex", md: "none" } }} component="div">
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="show more"
@@ -343,4 +328,3 @@ export default function DefaultAppBar() {
     </Box>
   );
 }
-

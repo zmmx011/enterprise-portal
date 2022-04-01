@@ -2,6 +2,7 @@ import { createTheme } from "@mui/material/styles";
 
 // A custom lightTheme for this app
 const darkTheme = createTheme({
+  spacing: 10,
   palette: {
     mode: "dark",
   },

@@ -11,15 +11,15 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { ColorModeContext } from "../theme/ColorModeContext";
 
-type SettingDrawerProps = {
-  drawerOpen: boolean,
-  setDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>
-};
+interface SettingDrawerProps {
+  drawerOpen: boolean;
+  setDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 interface groupButtonProps {
-  icon?: React.ReactNode,
-  text?: string,
-  value?: string
+  icon?: React.ReactNode;
+  text?: string;
+  value?: string;
 }
 
 export default function SettingDrawer({ drawerOpen, setDrawerOpen }: SettingDrawerProps) {
@@ -46,7 +46,7 @@ export default function SettingDrawer({ drawerOpen, setDrawerOpen }: SettingDraw
         fontWeight: "700",
         fontSize: "0.6875rem",
         textTransform: "uppercase",
-        letterSpacing: "0.08rem"
+        letterSpacing: "0.08rem",
       }}
     >
       {text}
@@ -64,24 +64,22 @@ export default function SettingDrawer({ drawerOpen, setDrawerOpen }: SettingDraw
       exclusive
       fullWidth
       sx={{
-        borderRadius: "10px"
+        borderRadius: "10px",
       }}
     >
-      {
-        groupButtons.map((button, index) => (
-          <ToggleButton
-            value={button.value}
-            key={index}
-            sx={{
-              textTransform: "none",
-              "& .MuiSvgIcon-root": { mr: 1 }
-            }}
-          >
-            {button.icon}
-            {button.text}
-          </ToggleButton>
-        ))
-      }
+      {groupButtons.map((button, index) => (
+        <ToggleButton
+          value={button.value}
+          key={index}
+          sx={{
+            textTransform: "none",
+            "& .MuiSvgIcon-root": { mr: 1 },
+          }}
+        >
+          {button.icon}
+          {button.text}
+        </ToggleButton>
+      ))}
     </ToggleButtonGroup>
   );
 
@@ -90,8 +88,8 @@ export default function SettingDrawer({ drawerOpen, setDrawerOpen }: SettingDraw
       PaperProps={{
         sx: {
           borderRadius: "10px 0px 0px 10px",
-          width: 360
-        }
+          width: 360,
+        },
       }}
       anchor="right"
       open={drawerOpen}
@@ -103,7 +101,7 @@ export default function SettingDrawer({ drawerOpen, setDrawerOpen }: SettingDraw
             justifyContent: "space-between",
             display: "flex",
             alignItems: "center",
-            p: 2
+            p: 2,
           }}
         >
           <Typography>{t("appbar.menu.settings")}</Typography>
@@ -114,18 +112,20 @@ export default function SettingDrawer({ drawerOpen, setDrawerOpen }: SettingDraw
         <Divider />
         <Box sx={{ px: 2 }}>
           {titleTypo("Mode")}
-          {toggleGroup([
+          {toggleGroup(
+            [
               { icon: <LightModeIcon />, text: "Light", value: "light" },
-              { icon: <DarkModeIcon />, text: "Dark", value: "dark" }
+              { icon: <DarkModeIcon />, text: "Dark", value: "dark" },
             ],
             mode,
             toggleColorMode
           )}
           {titleTypo("Language")}
-          {toggleGroup([
+          {toggleGroup(
+            [
               { text: "한국어", value: "ko" },
               { text: "English", value: "en" },
-              { text: "中文", value: "ch" }
+              { text: "中文", value: "ch" },
             ],
             lang,
             handleLanguage

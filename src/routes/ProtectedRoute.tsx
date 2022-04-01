@@ -2,9 +2,9 @@ import { useKeycloak } from "@react-keycloak/web";
 
 import { useCallback } from "react";
 
-export type ProtectedRouteProps = {
+export interface ProtectedRouteProps {
   outlet: JSX.Element;
-};
+}
 
 export default function ProtectedRoute({ outlet }: ProtectedRouteProps) {
   const { keycloak } = useKeycloak();
@@ -18,4 +18,4 @@ export default function ProtectedRoute({ outlet }: ProtectedRouteProps) {
   }
 
   return outlet;
-};
+}
