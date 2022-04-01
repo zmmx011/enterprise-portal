@@ -11,7 +11,7 @@ const defaultWidth = 300;
 export const WidgetGrid: React.FC<Props> = ({ size, children }) => {
   const theme = useTheme();
   return (
-    <Grid item>
+    <Grid item sx={{ width: defaultWidth * size - Number(theme.spacing(2)) }}>
       <Card
         sx={{
           m: "10px",

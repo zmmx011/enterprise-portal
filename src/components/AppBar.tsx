@@ -22,45 +22,8 @@ import avatar from "../assets/images/avatar.jpg";
 import { useKeycloak } from "@react-keycloak/web";
 import { useTranslation } from "react-i18next";
 import SettingDrawer from "./Settings";
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "30ch",
-    },
-  },
-}));
+import { faBookmark, faCircleInfo, faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const pages = ["Hello Groupware", "K System", "Help Desk", "Together Lounge"];
 
@@ -218,19 +181,34 @@ export default function DefaultAppBar() {
 
   return (
     <Box>
-      <AppBar position="static">
+      <AppBar position="static" color="primary">
         <Toolbar>
-          {/* Logo */}
-          <Box sx={{ mr: 2, display: { xs: "none", md: "flex" } }}>
-            <img src={logo} alt="logo" />
+          <Box sx={{ mr: 1, display: { xs: "none", md: "flex" } }}>
+            <Typography
+              sx={{
+                fonSize: "20px",
+                lineHeight: "14px",
+                fontFamily: "Poppins",
+                fontWeight: "600",
+                letterSpacing: "1px",
+              }}
+            >
+              INVENIA
+            </Typography>
           </Box>
           {/* Desktop Nav */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
-                {page}
-              </Button>
-            ))}
+            <Typography
+              sx={{
+                fonSize: "20px",
+                lineHeight: "14px",
+                fontFamily: "Poppins",
+                fontWeight: "300",
+                letterSpacing: "1px",
+              }}
+            >
+              Enterprise Portal
+            </Typography>
           </Box>
           {/* Mobile */}
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -275,37 +253,15 @@ export default function DefaultAppBar() {
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <img src={logo} alt="logo" />
           </Box>
-          {/* Search */}
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
-          </Search>
           {/* Desktop Button */}
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            {/* Mail */}
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
+            {/* Bookmark */}
+            <IconButton color="inherit" size="small" sx={{ ml: 1 }}>
+              <FontAwesomeIcon icon={faBookmark} color="#8D8D8D" />
             </IconButton>
-            {/* Notification */}
-            <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            {/* Profile */}
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
+            {/* Logout */}
+            <IconButton color="inherit" size="small" sx={{ ml: 1 }}>
+              <FontAwesomeIcon icon={faPowerOff} color="#8D8D8D" />
             </IconButton>
           </Box>
           {/* Mobile Button */}

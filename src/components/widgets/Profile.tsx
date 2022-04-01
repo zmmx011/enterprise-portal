@@ -6,7 +6,7 @@ import { WidgetGrid } from "./WidgetGrid";
 
 export default function Profile() {
   const info = (text: string, value: number) => (
-    <Box sx={{ width: 52.5, height: 44, mr: "10px" }}>
+    <Box sx={{ width: 52.5, height: 44 }}>
       <Typography
         sx={{
           height: 16,
@@ -67,7 +67,7 @@ export default function Profile() {
           IT 개발파트
         </Typography>
       </Box>
-      <Box sx={{ p: 0, display: "flex" }}>
+      <Box sx={{ p: 0, display: "flex", justifyContent: "center" }}>
         {info("새 메일", 4)}
         {info("결재 진행", 0)}
         {info("결재 완료", 1)}
