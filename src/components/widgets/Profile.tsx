@@ -6,13 +6,13 @@ import { WidgetGrid } from "./WidgetGrid";
 
 export default function Profile() {
   const info = (text: string, value: number) => (
-    <Box sx={{ width: 52.5, height: 44 }}>
+    <Box>
       <Typography
         sx={{
           height: 16,
-          fontSize: 11,
+          fontSize: "0.7rem",
           lineHeight: 1.27,
-          letterSpacing: "1px",
+          letterSpacing: 1,
           textAlign: "center",
           color: "#8d8d8d",
         }}
@@ -20,14 +20,11 @@ export default function Profile() {
         {text}
       </Typography>
       <Typography
+        variant="h4"
         sx={{
-          height: 16,
-          fontSize: 26,
-          fontWeight: "500",
-          lineHeight: "0.54",
+          fontWeight: "fontWeightMedium",
           textAlign: "center",
           color: "#333333",
-          mt: "12px",
         }}
       >
         {value}
@@ -67,7 +64,7 @@ export default function Profile() {
           IT 개발파트
         </Typography>
       </Box>
-      <Box sx={{ p: 0, display: "flex", justifyContent: "center" }}>
+      <Box sx={{ p: 0, display: "flex", justifyContent: "space-between" }}>
         {info("새 메일", 4)}
         {info("결재 진행", 0)}
         {info("결재 완료", 1)}

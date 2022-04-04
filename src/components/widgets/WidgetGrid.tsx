@@ -14,10 +14,10 @@ export const WidgetGrid: React.FC<Props> = ({ size, children }) => {
     <Grid item sx={{ width: defaultWidth * size - Number(theme.spacing(2)) }}>
       <Card
         sx={{
-          m: "10px",
-          p: "20px",
+          m: 1,
+          p: 2,
           width: defaultWidth * size - Number(theme.spacing(2)),
-          borderRadius: "4px",
+          borderRadius: 1,
         }}
         color="primary"
       >

@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { ColorModeContext } from "../theme/ColorModeContext";
+import { ColorModeContext } from "../../theme/ColorModeContext";
 
 interface SettingDrawerProps {
   drawerOpen: boolean;
