@@ -1,8 +1,6 @@
 import * as React from "react";
 import { WidgetGrid } from "./WidgetGrid";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
-import LinearProgress, { linearProgressClasses } from "@mui/material/LinearProgress";
 import Box from "@mui/material/Box";
 
 export default function TogetherLounge() {
