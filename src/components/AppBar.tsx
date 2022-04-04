@@ -5,13 +5,11 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { useKeycloak } from "@react-keycloak/web";
-import { useTranslation } from "react-i18next";
 import { faBookmark, faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BookmarkDrawer from "./drawer/BookmarkDrawer";
 
 export default function DefaultAppBar() {
-  const { t } = useTranslation();
   const { keycloak } = useKeycloak();
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
