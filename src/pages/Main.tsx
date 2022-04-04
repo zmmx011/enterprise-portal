@@ -22,24 +22,24 @@ export default function Main() {
           <Typography sx={{ fontSize: 12, color: "#615F5F", lineHeight: "14px" }}>전사 Portal</Typography>
         </Box>
         <Grid container>
-          <Grid item xs={3}>
+          <Grid item xs={12} lg={3}>
             <Grid container direction="column">
               <Profile />
               <Schedule />
             </Grid>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} lg={6}>
             <Grid container direction="column">
               <Notice />
               <Grid item>
                 <Grid container>
-                  <Grid item xs={6}>
+                  <Grid item xs={12} lg={6}>
                     <Grid container direction="column">
                       <Helpdesk />
                       <HR />
                     </Grid>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={12} lg={6}>
                     <Grid container direction="column">
                       <ErpNavi />
                       <TogetherLounge />
@@ -49,7 +49,7 @@ export default function Main() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={12} lg={3}>
             <Grid container direction="column">
               <Notification />
               <Search />
