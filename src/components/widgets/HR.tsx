@@ -112,7 +112,13 @@ export default function HR() {
   return (
     <WidgetGrid size={1}>
       <Box sx={{ borderBottom: 1, borderColor: "divider", mb: "10px" }}>
-        <Tabs value={value} onChange={handleChange} aria-label="hr" sx={{ height: tabHeight, minHeight: tabHeight }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="hr"
+          sx={{ height: tabHeight, minHeight: tabHeight }}
+          variant="fullWidth"
+        >
           <StyledTab label="근태 현황" {...a11yProps(0)} />
           <StyledTab label="팀 휴가현황" {...a11yProps(1)} />
         </Tabs>

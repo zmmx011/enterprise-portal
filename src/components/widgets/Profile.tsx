@@ -37,28 +37,22 @@ export default function Profile() {
       <Box sx={{ p: 0, display: "flex", flexDirection: "column", alignItems: "center", mb: "20px" }}>
         <Avatar alt="Henry Cavill" src={avatar} sx={{ width: 87, height: 87, my: "6px" }} />
         <Typography
+          variant="h6"
           sx={{
-            height: "20px",
             textAlign: "center",
-            width: "110px",
             color: "#333333",
-            fontSize: 20,
-            lineHeight: 0.7,
             fontWeight: "bold",
-            mt: "6px",
+            mt: 1,
           }}
         >
           홍길동 선임
         </Typography>
         <Typography
+          variant="body2"
           sx={{
-            height: "14px",
             textAlign: "center",
-            width: "110px",
             color: "#333333",
-            fontSize: 14,
-            lineHeight: 1,
-            mt: "6px",
+            mt: 0.5,
           }}
         >
           IT 개발파트
