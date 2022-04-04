@@ -4,11 +4,12 @@ import { useTheme } from "@mui/material/styles";
 
 interface Props {
   size: 1 | 2 | 3 | 4;
+  maxHeight?: number;
 }
 
 const defaultWidth = 300;
 
-export const WidgetGrid: React.FC<Props> = ({ size, children }) => {
+export const WidgetGrid: React.FC<Props> = ({ size, maxHeight, children }) => {
   const theme = useTheme();
   return (
     <Grid item>
@@ -17,7 +18,9 @@ export const WidgetGrid: React.FC<Props> = ({ size, children }) => {
           m: 1,
           p: 2,
           width: defaultWidth * size - Number(theme.spacing(2)),
+          maxHeight: maxHeight,
           borderRadius: 1,
+          overflow: "auto",
         }}
         color="primary"
       >
