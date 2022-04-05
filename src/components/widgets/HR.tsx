@@ -39,11 +39,10 @@ function a11yProps(index: number) {
   };
 }
 
-const tabHeight = 28;
+const tabHeight = 30;
 
 const StyledTab = styled(Tab)(({ theme }) => ({
   fontSize: "16px",
-  lineHeight: "14px",
   height: tabHeight,
   minHeight: tabHeight,
   "&.Mui-selected": {
@@ -72,11 +71,10 @@ export default function HR() {
   };
 
   const info = (text: string, value: string) => (
-    <Box sx={{ display: "flex", justifyContent: "space-between", p: 0, mb: "3px" }}>
+    <Box sx={{ display: "flex", justifyContent: "space-between", mb: 0.5 }}>
       <Typography
+        variant="body2"
         sx={{
-          fontSize: 14,
-          lineHeight: "23px",
           textAlign: "left",
           color: "#8D8D8D",
         }}
@@ -84,10 +82,9 @@ export default function HR() {
         {text}
       </Typography>
       <Typography
+        variant="body2"
         sx={{
-          fontSize: 14,
-          lineHeight: "23px",
-          fontWeight: "700",
+          fontWeight: "bold",
           textAlign: "right",
           color: "#333333",
         }}
@@ -127,7 +124,7 @@ export default function HR() {
         {info("출근 시간", "08:50")}
         {info("잔여 연차", "12.5일")}
         <Divider sx={{ mt: "5px" }} />
-        <Box sx={{ display: "flex", p: 0, my: "15px" }}>
+        <Box sx={{ display: "flex", my: "15px" }}>
           <Typography
             sx={{
               fontSize: 13,
@@ -173,8 +170,8 @@ export default function HR() {
             <Typography sx={{ p: 1 }}>Hello. damu</Typography>
           </Popover>
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "space-between", p: 0, my: "7px" }}>
-          <Box sx={{ display: "flex", p: 0 }}>
+        <Box sx={{ display: "flex", justifyContent: "space-between", my: "7px" }}>
+          <Box sx={{ display: "flex" }}>
             <Typography
               sx={{
                 fontSize: 25,
@@ -194,7 +191,7 @@ export default function HR() {
               시간
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", p: 0 }}>
+          <Box sx={{ display: "flex" }}>
             <Typography
               sx={{
                 fontSize: 18,

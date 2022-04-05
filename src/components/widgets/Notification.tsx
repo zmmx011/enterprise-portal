@@ -5,7 +5,7 @@ import { Step, StepContent, StepLabel } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 
 export default function Notification() {
-  const alarms = [
+  const dataList = [
     {
       label: "전자결재",
       description: `[기안문서종결] [긴급요청 업무신청] 안소희 선임 평일야간(22시)_03/23 (수) 문서가 종결되었습니다`,
@@ -39,25 +39,25 @@ export default function Notification() {
       >
         알림
       </Typography>
-      {alarms.map((alarm, index) => (
+      {dataList.map((data, index) => (
         <Step key={index}>
           <StepLabel sx={{ ml: 0.8 }}>
-            <CircleIcon sx={{ fontSize: 8, color: alarm.read ? "#B3B3B3" : "#333333" }} />
+            <CircleIcon sx={{ fontSize: 8, color: data.read ? "#B3B3B3" : "#333333" }} />
             <Typography
               sx={{
                 display: "inline",
                 pl: 1.5,
                 fontSize: 12,
                 fontWeight: "bold",
-                color: alarm.read ? "#B3B3B3" : "#333333",
+                color: data.read ? "#B3B3B3" : "#333333",
               }}
             >
-              {alarm.label}
+              {data.label}
             </Typography>
           </StepLabel>
           <StepContent>
-            <Typography sx={{ fontSize: 13, color: alarm.read ? "#B3B3B3" : "#333333", mb: 1 }}>
-              {alarm.description}
+            <Typography sx={{ fontSize: 13, color: data.read ? "#B3B3B3" : "#333333", mb: 1 }}>
+              {data.description}
             </Typography>
           </StepContent>
         </Step>

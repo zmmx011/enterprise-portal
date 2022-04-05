@@ -34,7 +34,7 @@ export default function Profile() {
 
   return (
     <WidgetGrid size={1}>
-      <Box sx={{ p: 0, display: "flex", flexDirection: "column", alignItems: "center", mb: "20px" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mb: "20px" }}>
         <Avatar alt="Henry Cavill" src={avatar} sx={{ width: 87, height: 87, my: "6px" }} />
         <Typography
           variant="h6"
@@ -58,7 +58,7 @@ export default function Profile() {
           IT 개발파트
         </Typography>
       </Box>
-      <Box sx={{ p: 0, display: "flex", justifyContent: "space-between" }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         {info("새 메일", 4)}
         {info("결재 진행", 0)}
         {info("결재 완료", 1)}

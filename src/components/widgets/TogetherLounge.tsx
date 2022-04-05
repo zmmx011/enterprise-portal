@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 
 export default function TogetherLounge() {
   const info = (text: string, value: string) => (
-    <Box sx={{ display: "flex", justifyContent: "space-between", p: 0, mb: 1 }}>
+    <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
       <Typography
         variant="body2"
         sx={{
