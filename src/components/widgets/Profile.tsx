@@ -9,9 +9,7 @@ export default function Profile() {
     <Box>
       <Typography
         sx={{
-          height: 16,
           fontSize: "0.7rem",
-          lineHeight: 1.27,
           letterSpacing: 1,
           textAlign: "center",
           color: "#8d8d8d",
