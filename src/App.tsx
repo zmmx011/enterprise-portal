@@ -8,11 +8,11 @@ import { ColorModeContextProvider } from "./theme/ColorModeContext";
 
 function App() {
   const eventLogger = (event: unknown, error: unknown) => {
-    console.log("onKeycloakEvent", event, error);
+    console.debug("onKeycloakEvent", event, error);
   };
 
   const tokenLogger = (tokens: unknown) => {
-    console.log("onKeycloakTokens", tokens);
+    console.debug("onKeycloakTokens", tokens);
   };
 
   return (
@@ -24,7 +24,7 @@ function App() {
         onTokens={tokenLogger}
         LoadingComponent={<LoadingBalls />}
         initOptions={{
-          onLoad: "login-required"
+          onLoad: "login-required",
         }}
       >
         <Router />
