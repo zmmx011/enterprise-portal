@@ -1,8 +1,17 @@
 import * as React from "react";
 import { WidgetGrid } from "./WidgetGrid";
 import Typography from "@mui/material/Typography";
-import { Step, StepContent, StepLabel } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
+import { styled } from "@mui/material/styles";
+import { Step, StepLabel } from "@mui/material";
+
+const Content = styled("div")(({ theme }) => ({
+  marginLeft: 12, // half icon
+  paddingLeft: 8 + 12, // margin + half icon
+  paddingRight: 8,
+  paddingBottom: 10,
+  borderLeft: `1px solid ${theme.palette.mode === "light" ? theme.palette.grey[400] : theme.palette.grey[600]}`,
+}));
 
 export default function Notification() {
   const dataList = [
@@ -55,11 +64,9 @@ export default function Notification() {
               {data.label}
             </Typography>
           </StepLabel>
-          <StepContent>
-            <Typography sx={{ fontSize: 13, color: data.read ? "#B3B3B3" : "#333333", mb: 1 }}>
-              {data.description}
-            </Typography>
-          </StepContent>
+          <Content>
+            <Typography sx={{ fontSize: 13, color: data.read ? "#B3B3B3" : "#333333" }}>{data.description}</Typography>
+          </Content>
         </Step>
       ))}
     </WidgetGrid>

@@ -91,7 +91,7 @@ export default function Notice() {
       </Box>
       <TabPanel value={value} index={0}>
         {dataList.map((data, index) => (
-          <Box key={index} sx={{ display: "flex", justifyContent: "space-between", mb: 0.5 }}>
+          <Box key={index} sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
             <Typography
               variant="body2"
               sx={{

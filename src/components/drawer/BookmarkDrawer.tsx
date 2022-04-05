@@ -104,8 +104,8 @@ export default function BookmarkDrawer({ drawerOpen, setDrawerOpen }: BookmarkDr
               {t("appbar.bookmark.title")}
             </Typography>
           </Box>
-          <IconButton>
-            <CloseIcon fontSize="small" onClick={toggleDrawer(false)} />
+          <IconButton onClick={toggleDrawer(false)}>
+            <CloseIcon fontSize="small" />
           </IconButton>
         </Box>
         <Divider />
