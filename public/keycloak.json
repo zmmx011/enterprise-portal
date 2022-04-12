@@ -2,7 +2,7 @@
   "realm": "service",
   "auth-server-url": "https://sso.inveniacorp.com/auth/",
   "ssl-required": "external",
-  "resource": "ep",
+  "resource": "enterprise-portal",
   "public-client": true,
   "confidential-port": 0
 }
