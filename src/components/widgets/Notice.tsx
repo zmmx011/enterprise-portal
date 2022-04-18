@@ -7,6 +7,8 @@ import { styled } from "@mui/material/styles";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import { useAxios } from "../../hooks/axiosHook";
+import * as dateFns from "date-fns";
+import koLocale from "date-fns/locale/ko";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -17,7 +19,7 @@ interface TabPanelProps {
 export interface NoticeProps {
   boardNo: number;
   boardInfoNo?: number;
-  title?: string;
+  title: string;
   userName?: string;
   deptName?: string;
   rankName?: string;
@@ -25,7 +27,7 @@ export interface NoticeProps {
   important?: string;
   state?: number;
   type?: string;
-  registerDate?: string;
+  registerDate: string;
   hit?: number;
   attachYN?: string;
   reservationYN?: string;
@@ -131,7 +133,7 @@ export default function Notice() {
                 color: "#8D8D8D"
               }}
             >
-              {data.registerDate}
+              {dateFns.format(Date.parse(data.registerDate), "yyyy-MM-dd", { locale: koLocale })}
             </Typography>
           </Box>
         ))}
