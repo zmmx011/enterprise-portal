@@ -6,7 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import { styled } from "@mui/material/styles";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+import { useAxios } from "../../hooks/axiosHook";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -84,13 +84,16 @@ const StyledTab = styled(Tab)(({ theme }) => ({
 
 export default function Notice() {
   const [notice, setNotice] = useState<NoticeProps[]>([])
-
+  const axiosInstance = useAxios(process.env.REACT_APP_API_BASE_URL + "")
   useEffect(() => {
-    axios
-    .get("https://apigw.inveniacorp.com/gw-service/v1/notice/?sortBy=desc&limit=6&offset=0")
-    .then((response) => {
-      setNotice(response.data);
-    });
+    if (axiosInstance.current != null) {
+      axiosInstance
+      .current
+      .get("/notice/?sortBy=desc&limit=6&offset=0")
+      .then((response) => {
+        setNotice(response.data);
+      });
+    }
   });
 
   const [value, setValue] = React.useState(0);
