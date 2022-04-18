@@ -89,12 +89,12 @@ export default function Notice() {
     if (axiosInstance.current != null) {
       axiosInstance
       .current
-      .get("/notice/?sortBy=desc&limit=6&offset=0")
+      .get("https://apigw.inveniacorp.com/gw-service/v1/notice/?sortBy=desc&limit=6&offset=1")
       .then((response) => {
         setNotice(response.data);
       });
     }
-  });
+  },[axiosInstance]);
 
   const [value, setValue] = React.useState(0);
 
