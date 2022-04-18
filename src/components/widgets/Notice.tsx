@@ -1,15 +1,51 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { WidgetGrid } from "./WidgetGrid";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import { styled } from "@mui/material/styles";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
+}
+
+export interface NoticeProps {
+  boardNo: number;
+  boardInfoNo?: number;
+  title?: string;
+  userName?: string;
+  deptName?: string;
+  rankName?: string;
+  security?: string;
+  important?: string;
+  state?: number;
+  type?: string;
+  registerDate?: string;
+  hit?: number;
+  attachYN?: string;
+  reservationYN?: string;
+  modifyDate?: string;
+  userId?: string;
+  startDate?: string;
+  endDate?: string;
+  userNo?: string;
+  fileNo?: any;
+  noticeYN?: string;
+  activeYN?: string;
+  tag?: string;
+  contentMode?: string;
+  entryDate?: string;
+  entryDept?: string;
+  fixView?: string;
+  noticeStartDate?: string;
+  noticeEndDate?: string;
+  noticeReserveYN?: string;
+  loginYN?: string;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -33,7 +69,7 @@ const tabHeight = 30;
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`
   };
 }
 
@@ -42,37 +78,20 @@ const StyledTab = styled(Tab)(({ theme }) => ({
   height: tabHeight,
   minHeight: tabHeight,
   "&.Mui-selected": {
-    fontWeight: theme.typography.fontWeightBold,
-  },
+    fontWeight: theme.typography.fontWeightBold
+  }
 }));
 
 export default function Notice() {
-  const dataList = [
-    {
-      content: "[일정변경] '22년 HR 간담회 개최 (4.11.월 15시, 신관 Cafeteria)",
-      date: "2022-03-31",
-    },
-    {
-      content: "[공지] 정기 주주총회 개최에 따른 협조사항 공지 (3.31.목. 09:00 ~ / 신관 이용자제, 사내식당 미운영)",
-      date: "2022-03-29",
-    },
-    {
-      content: "[목표] '22년 개인 OKR 시행 (매출 1,500억, 영업이익 100억, 리더 합의, 4.4.월)",
-      date: "2022-03-29",
-    },
-    {
-      content: "[공지]중국법인 청명절 연휴 휴무안내",
-      date: "2022-03-28",
-    },
-    {
-      content: "[공지] 인재추천 인센티브제도 시행 안내(포상금 최대 300만원)",
-      date: "2022-03-28",
-    },
-    {
-      content: "[공지] '22년 2분기 적용 유류비 공지 (2,310원/10km)",
-      date: "2022-03-28",
-    },
-  ];
+  const [notice, setNotice] = useState<NoticeProps[]>([])
+
+  useEffect(() => {
+    axios
+    .get("https://apigw.inveniacorp.com/gw-service/v1/notice/?sortBy=desc&limit=6&offset=0")
+    .then((response) => {
+      setNotice(response.data);
+    });
+  });
 
   const [value, setValue] = React.useState(0);
 
@@ -90,26 +109,26 @@ export default function Notice() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        {dataList.map((data, index) => (
+        {notice.map((data, index) => (
           <Box key={index} sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
             <Typography
               variant="body2"
               sx={{
                 textAlign: "left",
-                color: "#333333",
+                color: "#333333"
               }}
             >
-              {data.content}
+              {data.title}
             </Typography>
             <Typography
               sx={{
                 flexShrink: 0,
                 fontSize: 12,
                 textAlign: "right",
-                color: "#8D8D8D",
+                color: "#8D8D8D"
               }}
             >
-              {data.date}
+              {data.registerDate}
             </Typography>
           </Box>
         ))}

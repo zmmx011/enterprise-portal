@@ -1,5 +1,23 @@
 {
   "appbar.menu.settings": "환경설정",
   "appbar.menu.logout": "로그아웃",
-  "appbar.bookmark.title": "BookMark"
+  "appbar.bookmark.title": "BookMark",
+  "appbar.bookmark.gw": "그룹웨어",
+  "appbar.bookmark.pdm": "PDM",
+  "appbar.bookmark.eas": "경비증빙 시스템",
+  "appbar.bookmark.dms": "도면배포 보안",
+  "appbar.bookmark.bi": "BI",
+  "appbar.bookmark.visit": "방문예약",
+  "appbar.bookmark.scu": "보안카메라",
+  "appbar.bookmark.crm": "CRM",
+  "appbar.bookmark.manual": "매뉴얼 사이트",
+  "appbar.bookmark.dic": "용어사전",
+  "appbar.bookmark.ipms": "특허관리",
+  "appbar.bookmark.ezhelp": "원격지원",
+  "appbar.bookmark.workflow": "워크플로우",
+  "appbar.bookmark.lms": "한기대 이러닝",
+  "appbar.bookmark.hunet": "LG Display 사이버 연수원",
+  "appbar.bookmark.benecafe": "복지몰(e제너두)",
+  "appbar.bookmark.welfare114": "복지볼(복지몰114)",
+  "appbar.bookmark.bizcare": "건강검진예약"
 }
