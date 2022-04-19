@@ -10,7 +10,6 @@ export const useAxios = (baseURL: string) => {
   const kcToken = keycloak != null && keycloak.token != null ? keycloak.token : '';
 
   useEffect(() => {
-
     axiosInstance.current = axios.create({
       baseURL,
       headers: {

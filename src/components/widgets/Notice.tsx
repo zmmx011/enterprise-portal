@@ -94,7 +94,7 @@ export default function Notice() {
     if (axiosInstance.current != null) {
       axiosInstance
       .current
-      .get("https://apigw.inveniacorp.com/gw-service/v1/notice/?sortBy=desc&limit=6&offset=1")
+      .get("notice/?sortBy=desc&limit=6&offset=1")
       .then((response) => {
         setNotice(response.data);
       });
@@ -105,10 +105,22 @@ export default function Notice() {
     setTab(newValue);
   };
 
+  const handleTest= () => {
+    if (axiosInstance.current != null) {
+      axiosInstance
+      .current
+      .get("https://apigw.inveniacorp.com/gw-service/v1/notice/?sortBy=desc&limit=6&offset=1")
+      .then((response) => {
+        setNotice(response.data);
+      });
+    }
+  }
+
   const createNoticeLink = (data: NoticeProps) => {
     let url = new URL("https://hello.inveniacorp.com");
     url.searchParams.set("boardInfoNo", String(data.boardInfoNo));
     url.searchParams.set("boardNo", String(data.boardNo));
+
     return new URL(url.origin + "/nc.n#" + window.btoa("/notice/board/boardView.n?" + url.searchParams)).toString();
   };
 
@@ -138,6 +150,7 @@ export default function Notice() {
               {data.title}
             </Link>
             <Typography
+              onClick={handleTest}
               sx={{
                 flexShrink: 0,
                 fontSize: 12,
