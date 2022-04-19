@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import { useAxios } from "../../hooks/axiosHook";
 import * as dateFns from "date-fns";
 import koLocale from "date-fns/locale/ko";
+import { Link } from "@mui/material";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -18,7 +19,7 @@ interface TabPanelProps {
 
 export interface NoticeProps {
   boardNo: number;
-  boardInfoNo?: number;
+  boardInfoNo: number;
   title: string;
   userName?: string;
   deptName?: string;
@@ -86,10 +87,10 @@ const StyledTab = styled(Tab)(({ theme }) => ({
 
 export default function Notice() {
   const [tab, setTab] = React.useState(0);
-  const [notice, setNotice] = useState<NoticeProps[]>([])
-  const axiosInstance = useAxios(process.env.REACT_APP_API_BASE_URL + "")
+  const [notice, setNotice] = useState<NoticeProps[]>([]);
+  const axiosInstance = useAxios(process.env.REACT_APP_API_BASE_URL + "");
   useEffect(() => {
-    if(tab !== 0) return;
+    if (tab !== 0) return;
     if (axiosInstance.current != null) {
       axiosInstance
       .current
@@ -98,10 +99,17 @@ export default function Notice() {
         setNotice(response.data);
       });
     }
-  },[axiosInstance, tab]);
+  }, [axiosInstance, tab]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
+  };
+
+  const createNoticeLink = (data: NoticeProps) => {
+    let url = new URL("https://hello.inveniacorp.com");
+    url.searchParams.set("boardInfoNo", String(data.boardInfoNo));
+    url.searchParams.set("boardNo", String(data.boardNo));
+    return new URL(url.origin + "/nc.n#" + window.btoa("/notice/board/boardView.n?" + url.searchParams)).toString();
   };
 
   return (
@@ -116,7 +124,11 @@ export default function Notice() {
       <TabPanel value={tab} index={0}>
         {notice.map((data, index) => (
           <Box key={index} sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
-            <Typography
+            <Link
+              href={createNoticeLink(data)}
+              target='_blank'
+              color="inherit"
+              underline="none"
               variant="body2"
               sx={{
                 textAlign: "left",
@@ -124,7 +136,7 @@ export default function Notice() {
               }}
             >
               {data.title}
-            </Typography>
+            </Link>
             <Typography
               sx={{
                 flexShrink: 0,
