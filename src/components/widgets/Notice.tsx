@@ -85,9 +85,11 @@ const StyledTab = styled(Tab)(({ theme }) => ({
 }));
 
 export default function Notice() {
+  const [tab, setTab] = React.useState(0);
   const [notice, setNotice] = useState<NoticeProps[]>([])
   const axiosInstance = useAxios(process.env.REACT_APP_API_BASE_URL + "")
   useEffect(() => {
+    if(tab !== 0) return;
     if (axiosInstance.current != null) {
       axiosInstance
       .current
@@ -96,24 +98,22 @@ export default function Notice() {
         setNotice(response.data);
       });
     }
-  },[axiosInstance]);
-
-  const [value, setValue] = React.useState(0);
+  },[axiosInstance, tab]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+    setTab(newValue);
   };
 
   return (
     <WidgetGrid size={2}>
       <Box sx={{ borderBottom: 1, borderColor: "divider", mb: "10px" }}>
-        <Tabs value={value} onChange={handleChange} aria-label="hr" sx={{ height: tabHeight, minHeight: tabHeight }}>
+        <Tabs value={tab} onChange={handleChange} aria-label="hr" sx={{ height: tabHeight, minHeight: tabHeight }}>
           <StyledTab label="전사공지" {...a11yProps(0)} />
           <StyledTab label="주차통제" {...a11yProps(1)} />
           <StyledTab label="식단표" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={tab} index={0}>
         {notice.map((data, index) => (
           <Box key={index} sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
             <Typography
@@ -138,10 +138,10 @@ export default function Notice() {
           </Box>
         ))}
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={tab} index={1}>
         주차통제
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={tab} index={2}>
         식단표
       </TabPanel>
     </WidgetGrid>
