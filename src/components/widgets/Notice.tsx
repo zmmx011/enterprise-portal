@@ -86,12 +86,12 @@ const StyledTab = styled(Tab)(({ theme }) => ({
 }));
 
 export default function Notice() {
-  const [tab, setTab] = React.useState(0);
+  const [tab, setTab] = useState(0);
   const [notice, setNotice] = useState<NoticeProps[]>([]);
-  const axiosInstance = useAxios(process.env.REACT_APP_API_BASE_URL + "");
+  const axiosInstance = useAxios(process.env.REACT_APP_GW_BASE_URL + "");
   useEffect(() => {
     if (tab !== 0) return;
-    if (axiosInstance.current != null) {
+    if (axiosInstance.current) {
       axiosInstance
       .current
       .get("notice/?sortBy=desc&limit=6&offset=1")
@@ -104,17 +104,6 @@ export default function Notice() {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
   };
-
-  const handleTest= () => {
-    if (axiosInstance.current != null) {
-      axiosInstance
-      .current
-      .get("https://apigw.inveniacorp.com/gw-service/v1/notice/?sortBy=desc&limit=6&offset=1")
-      .then((response) => {
-        setNotice(response.data);
-      });
-    }
-  }
 
   const createNoticeLink = (data: NoticeProps) => {
     let url = new URL("https://hello.inveniacorp.com");
@@ -150,7 +139,6 @@ export default function Notice() {
               {data.title}
             </Link>
             <Typography
-              onClick={handleTest}
               sx={{
                 flexShrink: 0,
                 fontSize: 12,

@@ -3,16 +3,75 @@ import { Avatar, Typography } from "@mui/material";
 import * as React from "react";
 import avatar from "../../assets/images/avatar.jpg";
 import { WidgetGrid } from "./WidgetGrid";
+import { useAxios } from "../../hooks/axiosHook";
+import { useEffect, useState } from "react";
+import { useKeycloak } from "@react-keycloak/web";
+
+
+interface ApprovalStatusProps {
+  inProgressCount?: number;
+  unreadReturnCount: number;
+  unreadCompleteCount: number;
+  inApprovalCount: number;
+}
 
 export default function Profile() {
-  const info = (text: string, value: number) => (
+  const { keycloak } = useKeycloak();
+  const userId = keycloak ? keycloak.idTokenParsed?.preferred_username : undefined;
+  const [mailCount, setMailCount] = useState(0);
+  const [approvalStatus, setApprovalStatusCount] = useState<ApprovalStatusProps>();
+  const axiosInstance = useAxios(process.env.REACT_APP_GW_BASE_URL + "");
+
+  useEffect(() => {
+    if (axiosInstance.current) {
+      axiosInstance
+      .current
+      .get("/mail/" + userId + "/unread-count")
+      .then((response) => {
+        setMailCount(response.data);
+      });
+    }
+  }, [axiosInstance, userId]);
+
+  useEffect(() => {
+    if (axiosInstance.current) {
+      axiosInstance
+      .current
+      .get("/approval/" + userId + "/approval-status")
+      .then((response) => {
+        setApprovalStatusCount(response.data);
+      });
+    }
+  }, [axiosInstance, userId]);
+
+/*  const kcToken = keycloak != null && keycloak.token != null ? keycloak.token : "";
+  let sse = undefined;
+  useEffect(() => {
+    if (!listening) {
+      sse = new EventSourcePolyfill(process.env.REACT_APP_GW_BASE_URL + "/profile/stream-flux", {
+        headers: {
+          Authorization: initialized ? `Bearer ${kcToken}` : ""
+        }
+      });
+      sse.onopen = () => {
+        console.log("profile sse connection opened");
+      };
+      sse.onmessage = e => {
+        console.log("result", e.data);
+      };
+      sse.onerror = e => {
+        console.error("error", e);
+      };
+    }
+  }, []);*/
+  const info = (text: string, value: number | undefined) => (
     <Box>
       <Typography
         sx={{
           fontSize: "0.7rem",
           letterSpacing: 1,
           textAlign: "center",
-          color: "#8d8d8d",
+          color: "#8d8d8d"
         }}
       >
         {text}
@@ -22,7 +81,7 @@ export default function Profile() {
         sx={{
           fontWeight: "fontWeightMedium",
           textAlign: "center",
-          color: "#333333",
+          color: "#333333"
         }}
       >
         {value}
@@ -40,7 +99,7 @@ export default function Profile() {
             textAlign: "center",
             color: "#333333",
             fontWeight: "bold",
-            mt: 1,
+            mt: 1
           }}
         >
           홍길동 선임
@@ -50,17 +109,17 @@ export default function Profile() {
           sx={{
             textAlign: "center",
             color: "#333333",
-            mt: 0.5,
+            mt: 0.5
           }}
         >
           IT 개발파트
         </Typography>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        {info("새 메일", 4)}
-        {info("결재 진행", 0)}
-        {info("결재 완료", 1)}
-        {info("결재 수신", 7)}
+        {info("새 메일", mailCount)}
+        {info("결재 진행", approvalStatus?.inProgressCount)}
+        {info("결재 완료", approvalStatus?.unreadCompleteCount)}
+        {info("결재 수신", approvalStatus?.inApprovalCount)}
       </Box>
     </WidgetGrid>
   );

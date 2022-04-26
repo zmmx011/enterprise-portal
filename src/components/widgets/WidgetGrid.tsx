@@ -5,6 +5,7 @@ import { useTheme } from "@mui/material/styles";
 interface Props {
   size: 1 | 2 | 3 | 4;
   maxHeight?: number;
+  children: React.ReactNode;
 }
 
 const defaultWidth = 300;

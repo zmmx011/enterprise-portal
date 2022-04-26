@@ -24,10 +24,12 @@ function App() {
         onTokens={tokenLogger}
         LoadingComponent={<LoadingBalls />}
         initOptions={{
-          onLoad: "login-required",
+          onLoad: "login-required"
         }}
       >
-        <Router />
+        <React.StrictMode>
+          <Router />
+        </React.StrictMode>
       </ReactKeycloakProvider>
     </ColorModeContextProvider>
   );
