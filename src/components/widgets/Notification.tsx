@@ -51,6 +51,7 @@ export default function Notification() {
   const [notify, setNotify] = useState<NotifyProps[]>([]);
 
   const axiosInstance = useAxios(process.env.REACT_APP_GW_BASE_URL + "");
+  const kcToken = keycloak != null && keycloak.token != null ? keycloak.token : "";
 
   useEffect(() => {
     if (axiosInstance.current) {
@@ -71,13 +72,9 @@ export default function Notification() {
     }
   }, [axiosInstance, userId]);
 
-  //todo SSE 연결
-
-/*  const kcToken = keycloak != null && keycloak.token != null ? keycloak.token : "";
-  let sse = undefined;
   useEffect(() => {
     if (!listening) {
-      sse = new EventSourcePolyfill(process.env.REACT_APP_PORTAL_BASE_URL + "/notify/subscribe/" + userId, {
+      let sse = new EventSourcePolyfill(process.env.REACT_APP_PORTAL_BASE_URL + "/notify/subscribe/" + userId, {
         headers: {
           Authorization: initialized ? `Bearer ${kcToken}` : ""
         }
@@ -86,14 +83,15 @@ export default function Notification() {
         console.log("profile sse connection opened");
       };
       sse.onmessage = e => {
+        if(!e.data) return;
         console.log("result", e.data);
       };
       sse.onerror = e => {
         console.error("error", e);
       };
+      setListening(true);
     }
-  }, []);*/
-
+  }, [initialized, kcToken, listening, userId]);
   return (
     <WidgetGrid size={1} maxHeight={330}>
       <Typography

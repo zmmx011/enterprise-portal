@@ -6,7 +6,6 @@ import { WidgetGrid } from "./WidgetGrid";
 import { useAxios } from "../../hooks/axiosHook";
 import { useEffect, useState } from "react";
 import { useKeycloak } from "@react-keycloak/web";
-import { EventSourcePolyfill } from "event-source-polyfill";
 
 
 interface ApprovalStatusProps {
