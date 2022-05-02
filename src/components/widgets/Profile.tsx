@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { Avatar, Typography } from "@mui/material";
+import { Avatar, Link, Typography } from "@mui/material";
 import * as React from "react";
 import avatar from "../../assets/images/avatar.jpg";
 import { WidgetGrid } from "./WidgetGrid";
@@ -45,28 +45,30 @@ export default function Profile() {
     }
   }, [axiosInstance, userId]);
 
-  const info = (text: string, value: number | undefined) => (
+  const info = (text: string, value: number | undefined, link: string) => (
     <Box>
-      <Typography
-        sx={{
-          fontSize: "0.7rem",
-          letterSpacing: 1,
-          textAlign: "center",
-          color: "#8d8d8d"
-        }}
-      >
-        {text}
-      </Typography>
-      <Typography
-        variant="h4"
-        sx={{
-          fontWeight: "fontWeightMedium",
-          textAlign: "center",
-          color: "#333333"
-        }}
-      >
-        {value}
-      </Typography>
+      <Link href={link} target="_blank" color="inherit" underline="none">
+        <Typography
+          sx={{
+            fontSize: "0.7rem",
+            letterSpacing: 1,
+            textAlign: "center",
+            color: "#8d8d8d"
+          }}
+        >
+          {text}
+        </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: "fontWeightMedium",
+            textAlign: "center",
+            color: "#333333"
+          }}
+        >
+          {value}
+        </Typography>
+      </Link>
     </Box>
   );
 
@@ -97,10 +99,26 @@ export default function Profile() {
         </Typography>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        {info("새 메일", mailCount)}
-        {info("결재 진행", approvalStatus?.inProgressCount)}
-        {info("결재 완료", approvalStatus?.unreadCompleteCount)}
-        {info("결재 수신", approvalStatus?.inApprovalCount)}
+        {info(
+          "새 메일",
+          mailCount,
+          "https://hello.inveniacorp.com/em.n#L21haWwvbWFpbi5u"
+        )}
+        {info(
+          "결재 진행",
+          approvalStatus?.inProgressCount,
+          "https://hello.inveniacorp.com/ap.n#L2FwcHJvdmFsL2RyYWZ0Qm94L2luRHJhZnRMaXN0Lm4="
+        )}
+        {info(
+          "결재 완료",
+          approvalStatus?.unreadCompleteCount,
+          "https://hello.inveniacorp.com/ap.n#L2FwcHJvdmFsL2RyYWZ0Qm94L2NvbXBsZXRlRHJhZnRMaXN0Lm4="
+        )}
+        {info(
+          "결재 수신",
+          approvalStatus?.inApprovalCount,
+          "https://hello.inveniacorp.com/ap.n#L2FwcHJvdmFsL2FwcEJveC9pbkFwcHJvdmFsTGlzdC5u"
+        )}
       </Box>
     </WidgetGrid>
   );
