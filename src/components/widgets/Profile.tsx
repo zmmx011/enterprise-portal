@@ -6,6 +6,7 @@ import { WidgetGrid } from "./WidgetGrid";
 import { useAxios } from "../../hooks/axiosHook";
 import { useEffect, useState } from "react";
 import { useKeycloak } from "@react-keycloak/web";
+import { EventSourcePolyfill } from "event-source-polyfill";
 
 
 interface ApprovalStatusProps {
@@ -21,6 +22,7 @@ export default function Profile() {
   const [mailCount, setMailCount] = useState(0);
   const [approvalStatus, setApprovalStatusCount] = useState<ApprovalStatusProps>();
   const axiosInstance = useAxios(process.env.REACT_APP_GW_BASE_URL + "");
+
 
   useEffect(() => {
     if (axiosInstance.current) {
@@ -44,26 +46,6 @@ export default function Profile() {
     }
   }, [axiosInstance, userId]);
 
-/*  const kcToken = keycloak != null && keycloak.token != null ? keycloak.token : "";
-  let sse = undefined;
-  useEffect(() => {
-    if (!listening) {
-      sse = new EventSourcePolyfill(process.env.REACT_APP_GW_BASE_URL + "/profile/stream-flux", {
-        headers: {
-          Authorization: initialized ? `Bearer ${kcToken}` : ""
-        }
-      });
-      sse.onopen = () => {
-        console.log("profile sse connection opened");
-      };
-      sse.onmessage = e => {
-        console.log("result", e.data);
-      };
-      sse.onerror = e => {
-        console.error("error", e);
-      };
-    }
-  }, []);*/
   const info = (text: string, value: number | undefined) => (
     <Box>
       <Typography

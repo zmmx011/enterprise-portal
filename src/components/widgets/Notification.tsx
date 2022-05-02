@@ -4,6 +4,13 @@ import Typography from "@mui/material/Typography";
 import CircleIcon from "@mui/icons-material/Circle";
 import { styled } from "@mui/material/styles";
 import { Step, StepLabel } from "@mui/material";
+import { useEffect, useState } from "react";
+import { EventSourcePolyfill } from "event-source-polyfill";
+import { useKeycloak } from "@react-keycloak/web";
+import { useAxios } from "../../hooks/axiosHook";
+import { useTranslation } from "react-i18next";
+import * as dateFns from "date-fns";
+import koLocale from "date-fns/locale/ko";
 
 const Content = styled("div")(({ theme }) => ({
   marginLeft: 12, // half icon
@@ -13,29 +20,79 @@ const Content = styled("div")(({ theme }) => ({
   borderLeft: `1px solid ${theme.palette.mode === "light" ? theme.palette.grey[400] : theme.palette.grey[600]}`,
 }));
 
+interface NotifyProps {
+  no: number;
+  title: string;
+  content: string;
+  registerDate: string;
+  eventType: string;
+}
+
+interface EventLogProps {
+  no: number;
+  userNo: string;
+  eventCode: string;
+  eventData1: string;
+  eventData2?: any;
+  eventTitleResId: string;
+  eventTitleData1: string;
+  eventTitleData2?: any;
+  regDate: string;
+  menuNo: string;
+  readYN: string;
+  companyNum: string;
+}
+
 export default function Notification() {
-  const dataList = [
-    {
-      label: "전자결재",
-      description: `[기안문서종결] [긴급요청 업무신청] 안소희 선임 평일야간(22시)_03/23 (수) 문서가 종결되었습니다`,
-      read: false,
-    },
-    {
-      label: "전자결재",
-      description: "[개인문서수신] CST, HFSS 전기장 해석용 PC 접속 권한 요청건 문서가 수신되었습니다.",
-      read: true,
-    },
-    {
-      label: "일정관리",
-      description: `[공유일정] "이사회 진행 20시" 일정 공유되었습니다.`,
-      read: true,
-    },
-    {
-      label: "일정관리",
-      description: `[공유일정] "무슨 무슨 일정이 있습니다.`,
-      read: true,
-    },
-  ];
+  const { t } = useTranslation();
+  const { keycloak, initialized } = useKeycloak();
+  const [listening, setListening] = useState(false);
+  const userId = keycloak ? keycloak.idTokenParsed?.preferred_username : undefined;
+  const [notify, setNotify] = useState<NotifyProps[]>([]);
+
+  const axiosInstance = useAxios(process.env.REACT_APP_GW_BASE_URL + "");
+
+  useEffect(() => {
+    if (axiosInstance.current) {
+      axiosInstance
+      .current
+      .get("/event-log/" + userId + "/?sortBy=desc&limit=20&offset=1")
+      .then((response) => {
+        setNotify(response.data.map((value: EventLogProps) => {
+          return {
+            no: value.no,
+            title: "notify.gw."+ value.menuNo,
+            content: value.eventTitleData1,
+            registerDate: value.regDate,
+            eventType: "gw"
+          }
+        }));
+      });
+    }
+  }, [axiosInstance, userId]);
+
+  //todo SSE 연결
+
+/*  const kcToken = keycloak != null && keycloak.token != null ? keycloak.token : "";
+  let sse = undefined;
+  useEffect(() => {
+    if (!listening) {
+      sse = new EventSourcePolyfill(process.env.REACT_APP_PORTAL_BASE_URL + "/notify/subscribe/" + userId, {
+        headers: {
+          Authorization: initialized ? `Bearer ${kcToken}` : ""
+        }
+      });
+      sse.onopen = () => {
+        console.log("profile sse connection opened");
+      };
+      sse.onmessage = e => {
+        console.log("result", e.data);
+      };
+      sse.onerror = e => {
+        console.error("error", e);
+      };
+    }
+  }, []);*/
 
   return (
     <WidgetGrid size={1} maxHeight={330}>
@@ -48,24 +105,24 @@ export default function Notification() {
       >
         알림
       </Typography>
-      {dataList.map((data, index) => (
+      {notify.map((data, index) => (
         <Step key={index}>
           <StepLabel sx={{ ml: 0.8 }}>
-            <CircleIcon sx={{ fontSize: 8, color: data.read ? "#B3B3B3" : "#333333" }} />
+            <CircleIcon sx={{ fontSize: 8}} />
             <Typography
               sx={{
                 display: "inline",
                 pl: 1.5,
                 fontSize: 12,
                 fontWeight: "bold",
-                color: data.read ? "#B3B3B3" : "#333333",
               }}
             >
-              {data.label}
+              {t(data.title)}
             </Typography>
           </StepLabel>
           <Content>
-            <Typography sx={{ fontSize: 13, color: data.read ? "#B3B3B3" : "#333333" }}>{data.description}</Typography>
+            <Typography sx={{ fontSize: 13}}>{data.content}</Typography>
+            <Typography variant="caption">{dateFns.format(Date.parse(data.registerDate), "yyyy-MM-dd HH:mm:ss", { locale: koLocale })}</Typography>
           </Content>
         </Step>
       ))}
