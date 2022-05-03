@@ -17,7 +17,7 @@ const Content = styled("div")(({ theme }) => ({
   paddingLeft: 8 + 12, // margin + half icon
   paddingRight: 8,
   paddingBottom: 10,
-  borderLeft: `1px solid ${theme.palette.mode === "light" ? theme.palette.grey[400] : theme.palette.grey[600]}`,
+  borderLeft: `1px solid ${theme.palette.mode === "light" ? theme.palette.grey[400] : theme.palette.grey[600]}`
 }));
 
 interface NotifyProps {
@@ -62,11 +62,11 @@ export default function Notification() {
         setNotify(response.data.map((value: EventLogProps) => {
           return {
             no: value.no,
-            title: "notify.gw."+ value.menuNo,
+            title: "notify.gw." + value.menuNo,
             content: value.eventTitleData1,
             registerDate: value.regDate,
             eventType: "gw"
-          }
+          };
         }));
       });
     }
@@ -83,7 +83,7 @@ export default function Notification() {
         console.log("profile sse connection opened");
       };
       sse.onmessage = e => {
-        if(!e.data) return;
+        if (!e.data) return;
         console.log("result", e.data);
       };
       sse.onerror = e => {
@@ -92,13 +92,14 @@ export default function Notification() {
       setListening(true);
     }
   }, [initialized, kcToken, listening, userId]);
+
   return (
     <WidgetGrid size={1} maxHeight={330}>
       <Typography
         sx={{
           fontWeight: "bold",
           color: "#333333",
-          mb: 1.5,
+          mb: 1.5
         }}
       >
         알림
@@ -106,21 +107,23 @@ export default function Notification() {
       {notify.map((data, index) => (
         <Step key={index}>
           <StepLabel sx={{ ml: 0.8 }}>
-            <CircleIcon sx={{ fontSize: 8}} />
+            <CircleIcon sx={{ fontSize: 8 }} />
             <Typography
               sx={{
                 display: "inline",
                 pl: 1.5,
                 fontSize: 12,
-                fontWeight: "bold",
+                fontWeight: "bold"
               }}
             >
               {t(data.title)}
             </Typography>
           </StepLabel>
           <Content>
-            <Typography sx={{ fontSize: 13}}>{data.content}</Typography>
-            <Typography variant="caption">{dateFns.format(Date.parse(data.registerDate), "yyyy-MM-dd HH:mm:ss", { locale: koLocale })}</Typography>
+            <Typography sx={{ fontSize: 13 }}>{data.content}</Typography>
+            <Typography variant="caption">
+              {dateFns.format(Date.parse(data.registerDate), "yyyy-MM-dd HH:mm:ss", { locale: koLocale })}
+            </Typography>
           </Content>
         </Step>
       ))}

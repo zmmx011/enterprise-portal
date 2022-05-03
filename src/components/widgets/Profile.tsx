@@ -22,7 +22,6 @@ export default function Profile() {
   const [approvalStatus, setApprovalStatusCount] = useState<ApprovalStatusProps>();
   const axiosInstance = useAxios(process.env.REACT_APP_GW_BASE_URL + "");
 
-
   useEffect(() => {
     if (axiosInstance.current) {
       axiosInstance
@@ -107,6 +106,11 @@ export default function Profile() {
         {info(
           "결재 진행",
           approvalStatus?.inProgressCount,
+          "https://hello.inveniacorp.com/ap.n#L2FwcHJvdmFsL2RyYWZ0Qm94L2luRHJhZnRMaXN0Lm4="
+        )}
+        {info(
+          "결재 반려",
+          approvalStatus?.unreadReturnCount,
           "https://hello.inveniacorp.com/ap.n#L2FwcHJvdmFsL2RyYWZ0Qm94L2luRHJhZnRMaXN0Lm4="
         )}
         {info(

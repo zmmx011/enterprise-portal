@@ -17,7 +17,7 @@ export default function Main() {
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "primary.light" }}>
       <AppBar />
-      <Container maxWidth="lg" disableGutters sx={{ bgcolor: "#fa4343" }}>
+      <Container maxWidth="xl" disableGutters sx={{ bgcolor: "#fa4343" }}>
         <Box sx={{ my: "13px" }}>
           <Typography sx={{ fontSize: 12, color: "#615F5F", lineHeight: "14px" }}>전사 Portal</Typography>
         </Box>

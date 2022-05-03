@@ -127,7 +127,7 @@ export default function Notice() {
           <Box key={index} sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
             <Link
               href={createNoticeLink(data)}
-              target='_blank'
+              target="_blank"
               color="inherit"
               underline="none"
               variant="body2"

@@ -8,7 +8,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const defaultWidth = 300;
+const defaultWidth = 350;
 
 export const WidgetGrid: React.FC<Props> = ({ size, maxHeight, children }) => {
   const theme = useTheme();
@@ -20,7 +20,7 @@ export const WidgetGrid: React.FC<Props> = ({ size, maxHeight, children }) => {
           p: 2,
           width: defaultWidth * size - Number(theme.spacing(2)),
           maxHeight: maxHeight,
-          borderRadius: 1,
+          borderRadius: 2.5,
           overflow: "auto",
         }}
         color="primary"

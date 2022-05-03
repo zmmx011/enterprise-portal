@@ -33,7 +33,7 @@ export default function Schedule() {
         sx={{
           py: 2,
           m: 1,
-          borderRadius: 1,
+          borderRadius: 2.5,
         }}
         color="primary"
       >
@@ -79,23 +79,8 @@ export default function Schedule() {
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={koLocale}>
           <Box
             sx={{
-              "& > div": {
-                minWidth: 256,
-              },
-              "& > div > div, & > div > div > div, & .MuiCalendarPicker-root": {
-                width: 256,
-              },
               "& .PrivatePickersSlideTransition-root": {
                 minHeight: 32 * 7,
-              },
-              '& .PrivatePickersSlideTransition-root [role="row"]': {
-                margin: 0,
-              },
-              "& .MuiPickersDay-dayWithMargin": {
-                margin: 0,
-              },
-              "& .MuiCalendarPicker-root": {
-                alignItems: "center",
               },
             }}
           >
