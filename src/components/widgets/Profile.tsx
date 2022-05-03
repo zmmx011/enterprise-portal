@@ -111,7 +111,7 @@ export default function Profile() {
         {info(
           "결재 반려",
           approvalStatus?.unreadReturnCount,
-          "https://hello.inveniacorp.com/ap.n#L2FwcHJvdmFsL2RyYWZ0Qm94L2luRHJhZnRMaXN0Lm4="
+          "https://hello.inveniacorp.com/ap.n#L2FwcHJvdmFsL2RyYWZ0Qm94L3JldHVybkRyYWZ0TGlzdC5u"
         )}
         {info(
           "결재 완료",
