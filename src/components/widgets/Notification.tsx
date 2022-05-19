@@ -62,8 +62,8 @@ export default function Notification() {
         setNotify(response.data.map((value: EventLogProps) => {
           return {
             no: value.no,
-            title: "notify.gw." + value.menuNo,
-            content: value.eventTitleData1,
+            title: t("notify.gw." + value.menuNo),
+            content: "[" + t("notify.gw.code." + value.eventCode) + "] " + value.eventTitleData1,
             registerDate: value.regDate,
             eventType: "gw"
           };
@@ -85,6 +85,14 @@ export default function Notification() {
       sse.onmessage = e => {
         if (!e.data) return;
         console.log("result", e.data);
+        let event: NotifyProps = {
+          no: 1,
+          title: e.data.title,
+          content: e.data.content,
+          registerDate: "2022-05-03 10:00:00",
+          eventType: "gw"
+        }
+        setNotify(state => [...state, event])
       };
       sse.onerror = e => {
         console.error("error", e);
@@ -116,7 +124,7 @@ export default function Notification() {
                 fontWeight: "bold"
               }}
             >
-              {t(data.title)}
+              {data.title}
             </Typography>
           </StepLabel>
           <Content>
