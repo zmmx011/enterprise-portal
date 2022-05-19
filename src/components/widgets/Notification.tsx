@@ -70,7 +70,7 @@ export default function Notification() {
         }));
       });
     }
-  }, [axiosInstance, userId]);
+  }, [axiosInstance, t, userId]);
 
   useEffect(() => {
     if (!listening) {
