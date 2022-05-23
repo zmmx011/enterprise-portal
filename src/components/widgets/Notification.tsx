@@ -11,6 +11,9 @@ import { useAxios } from "../../hooks/axiosHook";
 import { useTranslation } from "react-i18next";
 import * as dateFns from "date-fns";
 import koLocale from "date-fns/locale/ko";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../redux/store";
+import { append, concat } from "../../redux/notify";
 
 const Content = styled("div")(({ theme }) => ({
   marginLeft: 12, // half icon
@@ -28,7 +31,7 @@ interface NotifyProps {
   eventType: string;
 }
 
-interface EventLogProps {
+interface EventProps {
   no: number;
   userNo: string;
   eventCode: string;
@@ -48,7 +51,9 @@ export default function Notification() {
   const { keycloak, initialized } = useKeycloak();
   const [listening, setListening] = useState(false);
   const userId = keycloak ? keycloak.idTokenParsed?.preferred_username : undefined;
-  const [notify, setNotify] = useState<NotifyProps[]>([]);
+  //const [notify, setNotify] = useState<NotifyProps[]>([]);
+  const notify = useSelector((state: RootState) => state.notify);
+  const dispatch = useDispatch();
 
   const axiosInstance = useAxios(process.env.REACT_APP_GW_BASE_URL + "");
   const kcToken = keycloak != null && keycloak.token != null ? keycloak.token : "";
@@ -59,7 +64,7 @@ export default function Notification() {
       .current
       .get("/event-log/" + userId + "/?sortBy=desc&limit=20&offset=1")
       .then((response) => {
-        setNotify(response.data.map((value: EventLogProps) => {
+        let event = response.data.map((value: EventProps) => {
           return {
             no: value.no,
             title: t("notify.gw." + value.menuNo),
@@ -67,10 +72,11 @@ export default function Notification() {
             registerDate: value.regDate,
             eventType: "gw"
           };
-        }));
+        });
+        dispatch(concat(event));
       });
     }
-  }, [axiosInstance, t, userId]);
+  }, [axiosInstance, dispatch, t, userId]);
 
   useEffect(() => {
     if (!listening) {
@@ -91,15 +97,15 @@ export default function Notification() {
           content: e.data.content,
           registerDate: "2022-05-03 10:00:00",
           eventType: "gw"
-        }
-        setNotify(state => [...state, event])
+        };
+        dispatch(append(event));
       };
       sse.onerror = e => {
         console.error("error", e);
       };
       setListening(true);
     }
-  }, [initialized, kcToken, listening, userId]);
+  }, [dispatch, initialized, kcToken, listening, userId]);
 
   return (
     <WidgetGrid size={1} maxHeight={330}>
